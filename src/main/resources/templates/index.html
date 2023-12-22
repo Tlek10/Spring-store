@@ -1,0 +1,47 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Подключите CSS Bootstrap (в заголовке документа) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Подключите JavaScript Bootstrap и jQuery (перед закрывающим тегом </body>) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <title>Home page</title>
+
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-12">
+                <table class = "table table-striped">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th th:text = "#{label.name}"></th>
+                        <th th:text = "#{label.price}"></th>
+                        <th th:text = "#{label.amount}"></th>
+                        <th th:text = "#{label.country}"></th>
+                        <th width="10%" th:text = "#{label.details}"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each = "it: ${tovary}">
+                        <td th:text = "${it.id}"></td>
+                        <td th:text = "${it.name}"></td>
+                        <td th:text = "${it.price}"></td>
+                        <td th:text = "${it.amount}"></td>
+                        <td th:text = "${it.country!=null?it.country.name + '-' + it.country.code : '-----'}"></td>
+                        <td><a th:href="@{'/details/' + ${it.id}}" class="btn btn-info btn-sm">DETAILS</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
