@@ -27,4 +27,8 @@ public class Users {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Roles> roles;
+
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    private List<Cart> carts;
+
 }

@@ -1,5 +1,6 @@
 package com.example.finalBookProject.services.impl;
 
+import com.example.finalBookProject.entities.Cart;
 import com.example.finalBookProject.entities.Countries;
 import com.example.finalBookProject.entities.ShopItems;
 import com.example.finalBookProject.repositories.CountryRepository;
@@ -7,6 +8,7 @@ import com.example.finalBookProject.repositories.ShopItemRepository;
 import com.example.finalBookProject.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -64,4 +66,10 @@ public class ItemServiceImpl implements ItemService {
         return countryRepository.getOne(id);
     }
 
+
+    @Transactional
+    public void update(Long id, ShopItems updatedItem) {
+        updatedItem.setId(id);
+        shopItemRepository.save(updatedItem);
+    }
 }
